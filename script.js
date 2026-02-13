@@ -1,38 +1,41 @@
 const sounds = ["applause", "boo", "gasp", "tada", "victory", "wrong"];
 const buttonsDiv = document.getElementById("buttons");
 
-// create sound buttons
+// CREATE AUDIO TAGS IN DOM
+sounds.forEach(sound => {
+  const audio = document.createElement("audio");
+  audio.src = `sounds/${sound}.mp3`;
+  audio.id = sound;
+  document.body.appendChild(audio);
+});
+
+// CREATE BUTTONS
 sounds.forEach(sound => {
   const btn = document.createElement("button");
-  btn.classList.add("btn");        // ⭐ REQUIRED CLASS
+  btn.classList.add("btn");
   btn.innerText = sound;
 
   btn.addEventListener("click", () => {
     stopSounds();
-
-    const audio = new Audio(`sounds/${sound}.mp3`);
-    audio.play();
+    document.getElementById(sound).play();
   });
 
   buttonsDiv.appendChild(btn);
 });
 
-// stop button
+// STOP BUTTON
 const stopBtn = document.createElement("button");
-stopBtn.classList.add("btn");      // ⭐ SAME CLASS
+stopBtn.classList.add("btn");
 stopBtn.innerText = "stop";
 stopBtn.addEventListener("click", stopSounds);
 
 buttonsDiv.appendChild(stopBtn);
 
-
-// stop all sounds
+// STOP ALL AUDIO
 function stopSounds() {
-  const audios = document.querySelectorAll("audio");
-
-  audios.forEach(audio => {
+  sounds.forEach(sound => {
+    const audio = document.getElementById(sound);
     audio.pause();
     audio.currentTime = 0;
   });
 }
-//your JS code here. If required.
