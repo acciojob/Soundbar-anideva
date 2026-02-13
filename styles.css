@@ -1,1 +1,15 @@
 /*  your css code here. If applicable */
+.btn {
+  background: #5a2ea6;
+  color: white;
+  border: none;
+  padding: 20px 35px;
+  font-size: 18px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.btn:hover {
+  background: #47208a;
+}
